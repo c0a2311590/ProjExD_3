@@ -140,14 +140,25 @@ class Bomb:
         self.rct.move_ip(self.vx, self.vy)
         screen.blit(self.img, self.rct)
 class Score:
+    """
+    スコアに関するクラス
+    """
     def __init__(self) -> None:
+        """
+        スコアとその文字列、サーフェイス設定
+        """
         self.fonto= pg.font.SysFont("hgp創英角ﾎﾟｯﾌﾟ体", 30)
         self.color = (0,0,255)
         self.score = 0
         self.img = self.fonto.render(f"スコア:{self.score}", 0, self.color)
         self.img_rct = self.img.get_rect()
         self.img_rct.center = 100,HEIGHT -50
-    def update(self, screen: pg.Surface):
+
+    def update(self, screen: pg.Surface) -> None: 
+        """
+        スコアの再設定
+        ディスプレイにアップデート
+        """
         self.img = self.fonto.render(f"スコア:{self.score}",0,self.color)
         screen.blit(self.img,self.img_rct)
         pg.display.update()
@@ -193,6 +204,8 @@ def main():
                         scores.score += 1
                         bird.change_img(6, screen)
                         pg.display.update()
+        
+        #配列
         bombs = [bomb for bomb in bombs if bomb is not None]
         mult_beam= [beam for beam in mult_beam if beam is not None]
         mult_beam = [beam for beam in mult_beam if check_bound(beam.rct) ==(True,True)]
