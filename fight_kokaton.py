@@ -152,7 +152,9 @@ class Score:
         screen.blit(self.img,self.img_rct)
         pg.display.update()
 
-
+class Explosion:
+    def __init__(self) -> None:
+        self.explo_lst=[pg.image.load("fig/explosion.gif"),pg.transform.flip(pg.image.load("fig/explosion.gif"), True,True)]
 
 def main():
     pg.display.set_caption("たたかえ！こうかとん")
@@ -194,8 +196,8 @@ def main():
                         bird.change_img(6, screen)
                         pg.display.update()
         bombs = [bomb for bomb in bombs if bomb is not None]
-        mult_beam= [beam for beam in mult_beam if beam is not None]
-        mult_beam = [beam for beam in mult_beam if check_bound(beam.rct) ==(True,True)]
+        mult_beam= [beam for beam in mult_beam if beam is not None]#ビーム削除
+        mult_beam = [beam for beam in mult_beam if check_bound(beam.rct) ==(True,True)]#画面外のビームを削除
 
         key_lst = pg.key.get_pressed()
         bird.update(key_lst, screen)
